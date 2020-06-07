@@ -50,10 +50,10 @@ def inference(mixed_audio):
 	print("Time taken for inverse scaling:",(time.perf_counter()-start5))
 	pred_sp = np.exp(pred)
 	s=istft((pred_sp * np.exp(1j*np.angle(mixed_complex_x))).T, win_length=cfg.win_length, hop_length=cfg.hop_length)
-	enh_file='Enhanced/enh_wav_file.wav'
+	enh_file='enh_wav_file.wav'
 	output.write_wav(enh_file, s/max(abs(s)), 16000)
 	print("Time taken for synthesizing the enhanced wave file:",(time.perf_counter()-start6))
 
-mixed_audio,_ = librosa.load( "Noise_Files/example_5min.wav", sr = 16000)     
+mixed_audio,_ = librosa.load( "Noisy_Files/example_5min.wav", sr = 16000)     
 inference(mixed_audio)   
 print("Total_Time_Taken:",(time.perf_counter()-start1))
